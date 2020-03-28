@@ -46,12 +46,16 @@ public final class GenerateData {
         dishNames = readDishes(Paths.get("data", "list-foods"));
     }
 
+    public static List<String> getPersonNames() { return  personNames;}
+
+    public static List<String> getDomains() { return domains; }
+
     public static List<DishName> getDishNames() { return dishNames; }
 
     public static List<PlaceName> getPlaceNames() { return placeNames; }
 
-    public static String randomEmail() {
-        return randomPersonName() + "@" + domains.get(r.nextInt(domains.size()));
+    public static String randomEmail(String personName) {
+        return personName.toLowerCase().replace(" ", ".") + domains.get(r.nextInt(domains.size()));
     }
 
     public static String randomPersonName() {

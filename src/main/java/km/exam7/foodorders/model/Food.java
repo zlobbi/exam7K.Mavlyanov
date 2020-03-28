@@ -2,6 +2,7 @@ package km.exam7.foodorders.model;
 
 import lombok.Data;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Random;
@@ -16,13 +17,16 @@ public class Food {
     private String name;
     private String type;
     private double price;
+    @DBRef
+    private Cafe cafe;
 
-    public static Food make(String name, String type) {
+    public static Food make(String name, String type, Cafe cafe) {
         Food f = new Food();
-        double d = 20.0;
+        double d = 20 + (40 - 20) * r.nextDouble();
         f.setName(name);
         f.setType(type);
-        f.setPrice(20 + (40 - 20) * r.nextDouble());
+        f.setCafe(cafe);
+        f.setPrice(d);
         return f;
     }
 }
