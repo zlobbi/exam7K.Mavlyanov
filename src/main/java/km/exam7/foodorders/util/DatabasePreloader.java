@@ -28,6 +28,7 @@ public class DatabasePreloader {
             clientRepository.deleteAll();
             foodRepository.deleteAll();
             orderRepository.deleteAll();
+
             // cafe repo initialization
             List<Cafe> cafes = new ArrayList<>();
             for(int i = 0; i < 6; i++) {
@@ -35,10 +36,6 @@ public class DatabasePreloader {
                 Cafe c = Cafe.make(pn.name, pn.description);
                 cafes.add(c);
             }
-//            for(GenerateData.PlaceName pn : GenerateData.getPlaceNames()) {
-//                Cafe c = Cafe.make(pn.name, pn.description);
-//                cafeRepository.save(c);
-//            }
 
             // food repository initialization
             List<Food> foods = new ArrayList<>();
@@ -47,18 +44,27 @@ public class DatabasePreloader {
                 Food f = Food.make(dn.name.trim(), dn.type, c);
                 foods.add(f);
             }
-            cafeRepository.saveAll(cafes);
-            foodRepository.saveAll(foods);
-
+            // client repo initialize
+            List<Client> clients = new ArrayList<>();
             for(int i = 0; i < 10; i++) {
                 var c = GenerateData.randomPersonName();
                 Client client = Client.make(c, GenerateData.randomEmail(c),
                         GenerateData.randomPersonName().replace(" ", ""));
-                clientRepository.save(client);
+                clients.add(client);
             }
+            // order repo initialize
             List<Order> orders = new ArrayList<>();
+            for(int i = 0; i < 20; i++) {
+                var c = clients.get(r.nextInt(clients.size()));
+                var f = foods.get(r.nextInt(foods.size()));
+                var o = Order.make(c, f);
+                orders.add(o);
+            }
 
-
+            cafeRepository.saveAll(cafes);
+            foodRepository.saveAll(foods);
+            clientRepository.saveAll(clients);
+            orderRepository.saveAll(orders);
 
             cafeRepository.findAll().forEach(c -> System.out.println(c));
             foodRepository.findAll().forEach(f -> System.out.println(f));

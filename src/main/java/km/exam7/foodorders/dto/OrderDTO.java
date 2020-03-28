@@ -3,7 +3,7 @@ package km.exam7.foodorders.dto;
 import km.exam7.foodorders.model.Order;
 import lombok.*;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Data
 @Builder(access = AccessLevel.PRIVATE)
@@ -12,7 +12,7 @@ import java.time.LocalDate;
 public class OrderDTO {
     private String orderFrom;
     private String foodName;
-    private LocalDate orderDate;
+    private LocalDateTime orderDate;
 
     public static OrderDTO from(Order c) {
         return builder()

@@ -1,7 +1,6 @@
 package km.exam7.foodorders.service;
 
 import km.exam7.foodorders.dto.FoodDTO;
-import km.exam7.foodorders.model.Food;
 import km.exam7.foodorders.repository.FoodRepository;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Slice;

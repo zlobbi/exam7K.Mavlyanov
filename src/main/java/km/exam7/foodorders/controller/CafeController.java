@@ -3,7 +3,6 @@ package km.exam7.foodorders.controller;
 import km.exam7.foodorders.annotations.ApiPageable;
 import km.exam7.foodorders.dto.CafeDTO;
 import km.exam7.foodorders.service.CafeService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Slice;
 import org.springframework.web.bind.annotation.RequestMapping;

@@ -13,34 +13,15 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-//    @Override
-//    protected void configure(
-//            AuthenticationManagerBuilder auth) throws Exception {
-//        auth.inMemoryAuthentication()
-//                .withUser("admin")
-//                .password(encoder().encode("password"))
-//                .authorities("FULL")
-//                .and()
-//                .withUser("guest")
-//                .password(encoder().encode("guest"))
-//                .roles("GUEST")
-//                .authorities("READ_ONLY");
-//    }
-
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        // Правило 1: Всё, что начинается с /subscriptions
-        // должно быть доступно только
-        // после авторизации пользователя
-        http.authorizeRequests()
-                .antMatchers("/tasks").hasRole("ADMIN")
-                .antMatchers("/mytasks").fullyAuthenticated()
-                .antMatchers("/dct").fullyAuthenticated();
 
-        // Правило 2: Разрешить всё остальные запросы
-//        http.authorizeRequests()
-//                .anyRequest()
-//                .permitAll();
+        http.authorizeRequests()
+                .antMatchers("/orders/**").fullyAuthenticated();
+
+        http.authorizeRequests()
+                .anyRequest()
+                .permitAll();
 
         // Настраиваем хранение сессий. Не храним сессию.
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);

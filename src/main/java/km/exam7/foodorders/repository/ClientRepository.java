@@ -7,4 +7,6 @@ import java.util.Optional;
 
 public interface ClientRepository extends PagingAndSortingRepository<Client, String> {
     Optional<Client> findByEmail(String s);
+
+    boolean existsByNameAndEmail(String name, String email);
 }

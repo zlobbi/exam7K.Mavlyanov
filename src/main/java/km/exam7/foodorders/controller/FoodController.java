@@ -32,8 +32,4 @@ public class FoodController {
         return foodService.findAllByCafeId(pageable, placeId);
     }
 
-//    @RequestMapping("/order")
-//    public FoodDTO orderFood(@RequestParam("foodName") String foodName) {
-//        return foodService.findFoodByName(foodName.trim());
-//    }
 }
